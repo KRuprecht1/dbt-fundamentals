@@ -3,7 +3,7 @@ select
     ,orderid as order_id
     ,paymentmethod as payment_method
     ,status
-    ,amount / 100 as amount --convert cents to dollars
+    ,{{ cents_to_dollars('amount', 4) }} as amount --convert cents to dollars
     ,created as created_at
 
 from {{ source('stripe','payment') }}
